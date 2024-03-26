@@ -23,15 +23,7 @@ function BottomBar() {
   const [selectedItem, setSelectedItem] = useState(2);
 
   return (
-    <Paper
-      sx={{
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        right: 0,
-      }}
-      elevation={3}
-    >
+    <Paper sx={{}} elevation={3}>
       <BottomNavigation
         showLabels
         value={selectedItem}
