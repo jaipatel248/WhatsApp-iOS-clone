@@ -1,54 +1,58 @@
 import React from "react";
 import BottomBar from "./components/bottomBar/BottomBar";
 import { Box, Container } from "@mui/material";
-import ChatItems from "./screens/chats/ChatItems";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
-function App() {
-  const myElementRef = React.useRef(null);
-  const [elementHeight, setElementHeight] = React.useState(null);
-  React.useEffect(() => {
-    const getElementHeight = () => {
-      if (myElementRef.current) {
-        const height = (myElementRef.current as any).getBoundingClientRect()
-          .height;
-        setElementHeight(height);
-      }
-    };
+import Home from "./screens/Home";
+import Conversation from "./screens/conversation/Conversation";
+import { LoadingProvider } from "./customContax.tsx/LoadingContext";
 
-    getElementHeight();
-
-    window.addEventListener("resize", getElementHeight);
-
-    // Clean up
-    return () => {
-      window.removeEventListener("resize", getElementHeight);
-    };
-  }, []);
-
+function MyAPP() {
   return (
-    <Container
-      style={{
-        padding: 0,
-        height: "100vh",
-        boxShadow: "2px 2px 4px rgba(100, 0, 0, 0.1)",
-        border: "1px solid red",
-      }}
-      maxWidth={"sm"}
-    >
+    <>
       <Box
         style={{
-          overflow:'auto',
-          height: elementHeight
-            ? `calc(100vh - ${elementHeight + "px)"} `
-            : "100vh",
+          overflow: "auto",
+          height: "100vh",
+          paddingBottom: "100px",
         }}
       >
-        <ChatItems />
+        <Outlet />
       </Box>
-      <Box ref={myElementRef}>
-        <BottomBar />
-      </Box>
-    </Container>
+    </>
+  );
+}
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MyAPP />,
+    children: [
+      { path: "", element: <Home /> },
+      { path: ":screen", element: <Home /> },
+      {
+        path: "chats/:id/",
+        children: [{ path: "conversation", element: <Conversation /> }],
+      },
+    ],
+  },
+]);
+function App() {
+  console.log("app");
+  return (
+    <LoadingProvider>
+      <Container
+        style={{
+          padding: 0,
+          height: "100vh",
+          // boxShadow: "2px 2px 4px rgba(100, 0, 0, 0.1)",
+          // border: "1px solid red",
+        }}
+        maxWidth={false}
+      >
+        <RouterProvider router={router} />
+      </Container>
+    </LoadingProvider>
   );
 }
 

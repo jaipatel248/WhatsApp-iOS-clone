@@ -1,10 +1,10 @@
+import React from "react";
 import {
   BottomNavigation,
   BottomNavigationAction,
   BottomNavigationActionProps,
   Paper,
 } from "@mui/material";
-import React, { useState } from "react";
 import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
 import MarkChatUnreadOutlinedIcon from "@mui/icons-material/MarkChatUnreadOutlined";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -15,39 +15,83 @@ import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import QuestionAnswerOutlinedIcon from "@mui/icons-material/QuestionAnswerOutlined";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import { useParams, useNavigate } from "react-router-dom";
 const CustomBottomNavigationAction = (props: BottomNavigationActionProps) => {
   return <BottomNavigationAction {...props}></BottomNavigationAction>;
 };
 
 function BottomBar() {
-  const [selectedItem, setSelectedItem] = useState(2);
+  const { screen } = useParams();
+  const selectedItem = screen || "chats";
+  const navigate = useNavigate();
+  console.log("BottomBar", screen);
 
   return (
-    <Paper sx={{}} elevation={3}>
+    <Paper
+      sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+      elevation={3}
+    >
       <BottomNavigation
         showLabels
         value={selectedItem}
         onChange={(event, newValue) => {
-          setSelectedItem(newValue);
+          navigate(`/${newValue}`);
         }}
       >
         <CustomBottomNavigationAction
-          value
+          value="updates"
           label="Updates"
-          icon={<MarkChatUnreadIcon />}
+          icon={
+            selectedItem === "updates" ? (
+              <MarkChatUnreadIcon />
+            ) : (
+              <MarkChatUnreadOutlinedIcon />
+            )
+          }
         />
-        <CustomBottomNavigationAction label="Calls" icon={<PhoneIcon />} />
+        <CustomBottomNavigationAction
+          label="Calls"
+          value="calls"
+          icon={
+            selectedItem === "calls" ? (
+              <PhoneIcon />
+            ) : (
+              <LocalPhoneOutlinedIcon />
+            )
+          }
+        />
         <CustomBottomNavigationAction
           label="Communities"
-          icon={<GroupsIcon />}
+          value="communities"
+          icon={
+            selectedItem === "communities" ? (
+              <GroupsIcon />
+            ) : (
+              <GroupsOutlinedIcon />
+            )
+          }
         />
         <CustomBottomNavigationAction
           label="Chats"
-          icon={<QuestionAnswerIcon />}
+          value="chats"
+          icon={
+            selectedItem === "chats" ? (
+              <QuestionAnswerIcon />
+            ) : (
+              <QuestionAnswerOutlinedIcon />
+            )
+          }
         />
         <CustomBottomNavigationAction
           label="Settings"
-          icon={<SettingsIcon />}
+          value="settings"
+          icon={
+            selectedItem === "settings" ? (
+              <SettingsIcon />
+            ) : (
+              <SettingsOutlinedIcon />
+            )
+          }
         />
       </BottomNavigation>
     </Paper>
