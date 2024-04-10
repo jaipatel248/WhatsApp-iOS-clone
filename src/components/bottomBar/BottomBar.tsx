@@ -3,6 +3,7 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   BottomNavigationActionProps,
+  Container,
   Paper,
 } from "@mui/material";
 import MarkChatUnreadIcon from "@mui/icons-material/MarkChatUnread";
@@ -27,74 +28,86 @@ function BottomBar() {
   console.log("BottomBar", screen);
 
   return (
-    <Paper
-      sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-      elevation={3}
+    <div
+      style={{
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+      }}
     >
-      <BottomNavigation
-        showLabels
-        value={selectedItem}
-        onChange={(event, newValue) => {
-          navigate(`/${newValue}`);
+      <Container
+        sx={{
+          padding: "0px !important",
         }}
       >
-        <CustomBottomNavigationAction
-          value="updates"
-          label="Updates"
-          icon={
-            selectedItem === "updates" ? (
-              <MarkChatUnreadIcon />
-            ) : (
-              <MarkChatUnreadOutlinedIcon />
-            )
-          }
-        />
-        <CustomBottomNavigationAction
-          label="Calls"
-          value="calls"
-          icon={
-            selectedItem === "calls" ? (
-              <PhoneIcon />
-            ) : (
-              <LocalPhoneOutlinedIcon />
-            )
-          }
-        />
-        <CustomBottomNavigationAction
-          label="Communities"
-          value="communities"
-          icon={
-            selectedItem === "communities" ? (
-              <GroupsIcon />
-            ) : (
-              <GroupsOutlinedIcon />
-            )
-          }
-        />
-        <CustomBottomNavigationAction
-          label="Chats"
-          value="chats"
-          icon={
-            selectedItem === "chats" ? (
-              <QuestionAnswerIcon />
-            ) : (
-              <QuestionAnswerOutlinedIcon />
-            )
-          }
-        />
-        <CustomBottomNavigationAction
-          label="Settings"
-          value="settings"
-          icon={
-            selectedItem === "settings" ? (
-              <SettingsIcon />
-            ) : (
-              <SettingsOutlinedIcon />
-            )
-          }
-        />
-      </BottomNavigation>
-    </Paper>
+        <Paper sx={{ paddingBottom: 1 }} elevation={3}>
+          <BottomNavigation
+            showLabels
+            value={selectedItem}
+            onChange={(event, newValue) => {
+              navigate(`/${newValue}`);
+            }}
+          >
+            <CustomBottomNavigationAction
+              value="updates"
+              label="Updates"
+              icon={
+                selectedItem === "updates" ? (
+                  <MarkChatUnreadIcon />
+                ) : (
+                  <MarkChatUnreadOutlinedIcon />
+                )
+              }
+            />
+            <CustomBottomNavigationAction
+              label="Calls"
+              value="calls"
+              icon={
+                selectedItem === "calls" ? (
+                  <PhoneIcon />
+                ) : (
+                  <LocalPhoneOutlinedIcon />
+                )
+              }
+            />
+            <CustomBottomNavigationAction
+              label="Communities"
+              value="communities"
+              icon={
+                selectedItem === "communities" ? (
+                  <GroupsIcon />
+                ) : (
+                  <GroupsOutlinedIcon />
+                )
+              }
+            />
+            <CustomBottomNavigationAction
+              label="Chats"
+              value="chats"
+              icon={
+                selectedItem === "chats" ? (
+                  <QuestionAnswerIcon />
+                ) : (
+                  <QuestionAnswerOutlinedIcon />
+                )
+              }
+            />
+            <CustomBottomNavigationAction
+              label="Settings"
+              value="settings"
+              icon={
+                selectedItem === "settings" ? (
+                  <SettingsIcon />
+                ) : (
+                  <SettingsOutlinedIcon />
+                )
+              }
+            />
+          </BottomNavigation>
+        </Paper>
+      </Container>
+    </div>
   );
 }
 

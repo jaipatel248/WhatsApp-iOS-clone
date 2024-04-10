@@ -14,33 +14,46 @@ import { useNavigate } from "react-router-dom";
 function TopChatBar() {
   let navigate = useNavigate();
   return (
-    <AppBar position="fixed" sx={{ top: 0 }}>
-      <Container>
-        <Toolbar disableGutters>
-          <IconButton onClick={() => navigate(-1)}>
-            <ArrowBackIosIcon />
-          </IconButton>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+      }}
+    >
+      <Container
+        sx={{
+          padding: "0px !important",
+        }}
+      >
+        <AppBar position="static">
+          <Toolbar disableGutters>
+            <IconButton onClick={() => navigate(-1)}>
+              <ArrowBackIosIcon />
+            </IconButton>
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
 
-          <Box sx={{ flexGrow: 1, display: "flex", ml: 1 }}>
-            <ListItemText primary="Photos" secondary="Jan 9, 2014" />
-          </Box>
+            <Box sx={{ flexGrow: 1, display: "flex", ml: 1 }}>
+              <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+            </Box>
 
-          <Box>
-            <Tooltip title="Open settings">
-              <IconButton>
-                <VideocamOutlinedIcon />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Open settings">
-              <IconButton>
-                <CallOutlinedIcon />
-              </IconButton>
-            </Tooltip>
-          </Box>
-        </Toolbar>
+            <Box>
+              <Tooltip title="Open settings">
+                <IconButton>
+                  <VideocamOutlinedIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Open settings">
+                <IconButton>
+                  <CallOutlinedIcon />
+                </IconButton>
+              </Tooltip>
+            </Box>
+          </Toolbar>
+        </AppBar>
       </Container>
-    </AppBar>
+    </div>
   );
 }
 export default TopChatBar;
