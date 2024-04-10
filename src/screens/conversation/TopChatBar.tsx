@@ -10,12 +10,16 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { ListItemText } from "@mui/material";
 import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
 import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
+import { useNavigate } from "react-router-dom";
 function TopChatBar() {
+  let navigate = useNavigate();
   return (
     <AppBar position="fixed" sx={{ top: 0 }}>
       <Container>
         <Toolbar disableGutters>
-          <ArrowBackIosIcon sx={{ display: "flex", mr: 1 }} />
+          <IconButton onClick={() => navigate(-1)}>
+            <ArrowBackIosIcon />
+          </IconButton>
           <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
 
           <Box sx={{ flexGrow: 1, display: "flex", ml: 1 }}>

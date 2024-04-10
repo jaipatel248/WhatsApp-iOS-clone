@@ -1,4 +1,12 @@
-import { Grid, IconButton, Paper, TextField } from "@mui/material";
+import {
+  AppBar,
+  Container,
+  IconButton,
+  TextField,
+  Toolbar,
+  Box,
+  Tooltip,
+} from "@mui/material";
 import React from "react";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import AddIcon from "@mui/icons-material/Add";
@@ -9,68 +17,63 @@ type Props = {};
 
 const BottomChatBar = (props: Props) => {
   return (
-    <Paper
+    <AppBar
+      position="fixed"
       sx={{
-        position: "fixed",
+        top: "auto",
         bottom: 0,
-        left: 0,
-        right: 0,
-        paddingX: 2,
         paddingBottom: 2,
         paddingTop: 1,
       }}
-      elevation={3}
     >
-      <Grid container justifyContent={"center"} alignItems={"center"}>
-        <Grid item>
+      <Container>
+        <Toolbar disableGutters>
           <IconButton>
             <AddIcon />
           </IconButton>
-        </Grid>
-        <Grid item xs={6} lg={10}>
-          <TextField
-            sx={{ mr: 3 }} // Add border radius here
-            size="small"
-            InputProps={{
-              fullWidth: true,
-              endAdornment: (
-                <IconButton>
-                  <InsertEmoticonIcon />
-                </IconButton>
-              ),
-              style: {
-                borderRadius: "10px",
-              },
-            }}
-            inputProps={{
-              style: {
-                height: "1em",
-              },
-            }}
-            fullWidth
-          />
-        </Grid>
-        <Grid item>
-          <Grid container>
-            <Grid item>
+          <Box sx={{ flexGrow: 1, display: { md: "flex" } }}>
+            <TextField
+              sx={{ mr: 3 }} // Add border radius here
+              size="small"
+              InputProps={{
+                fullWidth: true,
+                endAdornment: (
+                  <IconButton>
+                    <InsertEmoticonIcon />
+                  </IconButton>
+                ),
+                style: {
+                  borderRadius: "10px",
+                },
+              }}
+              inputProps={{
+                style: {
+                  height: "1em",
+                },
+              }}
+              fullWidth
+            />
+          </Box>
+          <Box sx={{ display: "flex", flexWrap: "nowrap" }}>
+            <Tooltip title="Open settings">
               <IconButton>
                 <CurrencyRupeeIcon />
               </IconButton>
-            </Grid>
-            <Grid item>
+            </Tooltip>
+            <Tooltip title="Open settings">
               <IconButton>
                 <CameraAltOutlinedIcon />
               </IconButton>
-            </Grid>
-            <Grid item>
+            </Tooltip>
+            <Tooltip title="Open settings">
               <IconButton>
                 <MicNoneOutlinedIcon />
               </IconButton>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Paper>
+            </Tooltip>
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 };
 
