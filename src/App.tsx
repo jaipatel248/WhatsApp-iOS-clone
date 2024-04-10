@@ -1,5 +1,4 @@
 import React from "react";
-import BottomBar from "./components/bottomBar/BottomBar";
 import { Box, Container } from "@mui/material";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
@@ -13,7 +12,6 @@ function MyAPP() {
       <Box
         style={{
           overflow: "auto",
-          height: "100vh",
           paddingBottom: "100px",
         }}
       >
