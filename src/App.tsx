@@ -10,7 +10,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
 import Home from "./screens/Home";
 import Conversation from "./screens/conversation/Conversation";
-import { LoadingProvider } from "./customContax.tsx/LoadingContext";
+import { LoadingProvider } from "./LoadingContext/LoadingContext";
 
 function MyAPP() {
   return (
@@ -18,6 +18,7 @@ function MyAPP() {
       <Box
         style={{
           overflow: "auto",
+          minHeight: "100vh",
           paddingBottom: "100px",
         }}
       >

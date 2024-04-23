@@ -10,9 +10,10 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { ListItemText } from "@mui/material";
 import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
 import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 function TopChatBar() {
   let navigate = useNavigate();
+  const { id } = useParams();
   return (
     <div
       style={{
@@ -29,15 +30,19 @@ function TopChatBar() {
       >
         <AppBar position="static">
           <Toolbar disableGutters>
-            <IconButton onClick={() => navigate(-1)}>
-              <ArrowBackIosIcon />
-            </IconButton>
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+            <Box
+              sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}
+              onClick={() => navigate(`/chats/${id}/conversation/profile`)}
+            >
+              <IconButton onClick={() => navigate(-1)}>
+                <ArrowBackIosIcon />
+              </IconButton>
+              <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
 
-            <Box sx={{ flexGrow: 1, display: "flex", ml: 1 }}>
-              <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+              <Box sx={{ ml: 1 }}>
+                <ListItemText primary="Photos" secondary="Jan 9, 2014" />
+              </Box>
             </Box>
-
             <Box>
               <Tooltip title="Open settings">
                 <IconButton>

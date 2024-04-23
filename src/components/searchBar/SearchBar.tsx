@@ -8,7 +8,7 @@ const SearchBar = (props: Props) => {
   return (
     <Box>
       <TextField
-        sx={{ mr: 3 }} // Add border radius here
+        sx={{ mr: 3 }}
         size="small"
         InputProps={{
           fullWidth: true,
@@ -23,6 +23,7 @@ const SearchBar = (props: Props) => {
           },
         }}
         fullWidth
+        placeholder="Search"
       />
     </Box>
   );
