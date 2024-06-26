@@ -41,71 +41,72 @@ function BottomBar() {
           padding: "0px !important",
         }}
       >
-        <Paper sx={{ paddingBottom: 1 }} elevation={3}>
-          <BottomNavigation
-            showLabels
-            value={selectedItem}
-            onChange={(event, newValue) => {
-              navigate(`/${newValue}`);
-            }}
-          >
-            <CustomBottomNavigationAction
-              value="updates"
-              label="Updates"
-              icon={
-                selectedItem === "updates" ? (
-                  <MarkChatUnreadIcon />
-                ) : (
-                  <MarkChatUnreadOutlinedIcon />
-                )
-              }
-            />
-            <CustomBottomNavigationAction
-              label="Calls"
-              value="calls"
-              icon={
-                selectedItem === "calls" ? (
-                  <PhoneIcon />
-                ) : (
-                  <LocalPhoneOutlinedIcon />
-                )
-              }
-            />
-            <CustomBottomNavigationAction
-              label="Communities"
-              value="communities"
-              icon={
-                selectedItem === "communities" ? (
-                  <GroupsIcon />
-                ) : (
-                  <GroupsOutlinedIcon />
-                )
-              }
-            />
-            <CustomBottomNavigationAction
-              label="Chats"
-              value="chats"
-              icon={
-                selectedItem === "chats" ? (
-                  <QuestionAnswerIcon />
-                ) : (
-                  <QuestionAnswerOutlinedIcon />
-                )
-              }
-            />
-            <CustomBottomNavigationAction
-              label="Settings"
-              value="settings"
-              icon={
-                selectedItem === "settings" ? (
-                  <SettingsIcon />
-                ) : (
-                  <SettingsOutlinedIcon />
-                )
-              }
-            />
-          </BottomNavigation>
-        </Paper>
+        <BottomNavigation
+          component={Paper}
+          sx={{ paddingBottom: 1 }}
+          elevation={3}
+          showLabels
+          value={selectedItem}
+          onChange={(event, newValue) => {
+            navigate(`/${newValue}`);
+          }}
+        >
+          <CustomBottomNavigationAction
+            value="updates"
+            label="Updates"
+            icon={
+              selectedItem === "updates" ? (
+                <MarkChatUnreadIcon />
+              ) : (
+                <MarkChatUnreadOutlinedIcon />
+              )
+            }
+          />
+          <CustomBottomNavigationAction
+            label="Calls"
+            value="calls"
+            icon={
+              selectedItem === "calls" ? (
+                <PhoneIcon />
+              ) : (
+                <LocalPhoneOutlinedIcon />
+              )
+            }
+          />
+          <CustomBottomNavigationAction
+            label="Communities"
+            value="communities"
+            icon={
+              selectedItem === "communities" ? (
+                <GroupsIcon />
+              ) : (
+                <GroupsOutlinedIcon />
+              )
+            }
+          />
+          <CustomBottomNavigationAction
+            label="Chats"
+            value="chats"
+            icon={
+              selectedItem === "chats" ? (
+                <QuestionAnswerIcon />
+              ) : (
+                <QuestionAnswerOutlinedIcon />
+              )
+            }
+          />
+          <CustomBottomNavigationAction
+            label="Settings"
+            value="settings"
+            icon={
+              selectedItem === "settings" ? (
+                <SettingsIcon />
+              ) : (
+                <SettingsOutlinedIcon />
+              )
+            }
+          />
+        </BottomNavigation>
       </Container>
     </div>
   );

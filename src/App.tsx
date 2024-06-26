@@ -2,6 +2,8 @@ import React from "react";
 import {
   Box,
   Container,
+  CssBaseline,
+  Paper,
   ThemeProvider,
   createTheme,
   useTheme,
@@ -44,24 +46,46 @@ const router = createBrowserRouter([
 ]);
 function App() {
   const themeDefault = useTheme();
+  const isLightTheme = window.localStorage.getItem("theme") === "light";
   const theme = createTheme({
+    palette: {
+      mode: isLightTheme ? "light" : "dark", // Set the mode to 'dark'
+    },
     components: {
-      MuiAppBar: {
+      MuiList: {
         styleOverrides: {
           root: {
-            background: themeDefault.palette.common.white,
-            color: themeDefault.palette.text.primary,
+            paddingY: 0,
           },
+        },
+      },
+      MuiAppBar: {
+        defaultProps: {
+          component: Paper,
+          color: "default",
+        },
+      },
+      MuiIconButton: {
+        styleOverrides: {
+          root: {
+            color: themeDefault.palette.primary.main,
+          },
+        },
+      },
+      MuiTypography: {
+        defaultProps: {
+          color: "textPrimary",
         },
       },
     },
   });
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <LoadingProvider>
         <Box
           sx={{
-            background: theme.palette.grey[100],
+            background: theme.palette.primary.contrastText,
           }}
         >
           <Container
@@ -69,8 +93,7 @@ function App() {
               padding: 0,
               background: theme.palette.background.paper,
               minHeight: "100vh",
-              boxShadow: "2px 2px 4px rgba(100, 0, 0, 0.1)",
-              border: "1px solid #ddd",
+              boxShadow: theme.shadows[1],
             }}
           >
             <RouterProvider router={router} />

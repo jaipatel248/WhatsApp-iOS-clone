@@ -3,9 +3,10 @@ import {
   ListItemButton,
   ListItemAvatar,
   ListItemText,
-  Typography,
   Grid,
   ListItemSecondaryAction,
+  Stack,
+  useTheme,
 } from "@mui/material";
 import React from "react";
 import CustomAvatar from "../../components/avatar/CustomAvatar";
@@ -22,6 +23,7 @@ const ChatItem = ({ item }: Props) => {
   const onClick = () => {
     navigate(`/chats/${id}/conversation`);
   };
+  const theme = useTheme();
   return (
     <>
       <ListItemButton alignItems="flex-start" onClick={onClick}>
@@ -59,19 +61,20 @@ const ChatItem = ({ item }: Props) => {
         </Grid>
         {unread_message_count > 0 ? (
           <ListItemSecondaryAction>
-            <div
+            <Stack
+              mt={2}
+              alignItems="center"
+              justifyContent="center"
+              width={20}
+              height={20}
               style={{
-                width: "20px",
-                height: "20px",
-                marginTop: "5px",
                 background: "blue",
                 borderRadius: 100,
-                textAlign: "center",
-                color: "white",
+                color: theme.palette.common.white,
               }}
             >
               {unread_message_count}
-            </div>
+            </Stack>
           </ListItemSecondaryAction>
         ) : null}
       </ListItemButton>

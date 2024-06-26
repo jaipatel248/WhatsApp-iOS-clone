@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Switch } from "@mui/material";
 import React from "react";
 import SettingsTopBar from "./SettingsTopBar";
 import SettingsCards from "./SettingsCards/SettingsCards";
