@@ -6,16 +6,39 @@ import {
   Toolbar,
   Box,
   Tooltip,
+  Popover,
+  ClickAwayListener,
+  useTheme,
 } from "@mui/material";
-import React from "react";
+import React, { MouseEvent, useCallback, useEffect } from "react";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import AddIcon from "@mui/icons-material/Add";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
 import MicNoneOutlinedIcon from "@mui/icons-material/MicNoneOutlined";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+import EmojiPicker, { EmojiClickData, Theme } from "emoji-picker-react";
+import ClickOutsideComponent from "../../components/ClickOutsideComponent";
 type Props = {};
 
 const BottomChatBar = (props: Props) => {
+  const [openEmojiPicker, setOpenEmojiPicker] = React.useState(false);
+
+  const [message, setMessage] = React.useState("");
+
+  const handleClick = useCallback((event: MouseEvent<HTMLButtonElement>) => {
+    setOpenEmojiPicker(true);
+  }, []);
+
+  const handleEmojiClick = useCallback((emojiData: EmojiClickData) => {
+    setMessage((prev) => prev + emojiData.emoji);
+  }, []);
+
+  const handleClickAway = useCallback(() => {
+    setOpenEmojiPicker(false);
+  }, []);
+
+  const theme = useTheme();
+
   return (
     <div
       style={{
@@ -44,17 +67,20 @@ const BottomChatBar = (props: Props) => {
             </IconButton>
             <Box sx={{ flexGrow: 1, display: { md: "flex" } }}>
               <TextField
-                sx={{ mr: 3 }} // Add border radius here
+                sx={{ mr: 3 }}
                 size="small"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 InputProps={{
                   fullWidth: true,
                   endAdornment: (
-                    <IconButton>
+                    <IconButton onClick={handleClick}>
                       <InsertEmoticonIcon />
                     </IconButton>
                   ),
                   style: {
-                    borderRadius: "10px",
+                    borderRadius: 10,
+                    paddingRight: 0,
                   },
                 }}
                 inputProps={{
@@ -84,6 +110,15 @@ const BottomChatBar = (props: Props) => {
             </Box>
           </Toolbar>
         </AppBar>
+        <ClickOutsideComponent onOutsideClick={handleClickAway}>
+          <EmojiPicker
+            theme={theme.palette.mode === "dark" ? Theme.DARK : Theme.LIGHT}
+            open={openEmojiPicker}
+            skinTonesDisabled
+            onEmojiClick={handleEmojiClick}
+            width={"100%"}
+          />
+        </ClickOutsideComponent>
       </Container>
     </div>
   );
