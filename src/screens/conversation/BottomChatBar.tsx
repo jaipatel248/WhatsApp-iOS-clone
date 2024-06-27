@@ -6,11 +6,9 @@ import {
   Toolbar,
   Box,
   Tooltip,
-  Popover,
-  ClickAwayListener,
   useTheme,
 } from "@mui/material";
-import React, { MouseEvent, useCallback, useEffect } from "react";
+import React, { MouseEvent, useCallback } from "react";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import AddIcon from "@mui/icons-material/Add";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
@@ -26,7 +24,7 @@ const BottomChatBar = (props: Props) => {
   const [message, setMessage] = React.useState("");
 
   const handleClick = useCallback((event: MouseEvent<HTMLButtonElement>) => {
-    setOpenEmojiPicker(true);
+    setOpenEmojiPicker((val) => !val);
   }, []);
 
   const handleEmojiClick = useCallback((emojiData: EmojiClickData) => {
