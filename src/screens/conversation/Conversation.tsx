@@ -1,8 +1,9 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Popover } from "@mui/material";
 import React from "react";
 
 import BottomChatBar from "./BottomChatBar";
 import TopChatBar from "./TopChatBar";
+import EmojiPicker from "emoji-picker-react";
 type Props = {};
 
 interface Message {
@@ -114,31 +115,80 @@ const messages: Message[] = [
     time: new Date(),
     isMe: true,
   },
-  {
-    id: "14",
-    message: "Bye",
-    time: new Date(),
-    isMe: false,
-  },
-  {
-    id: "15",
-    message: "Bye",
-    time: new Date(),
-    isMe: true,
-  },
-  {
-    id: "16",
-    message: "Bye",
-    time: new Date(),
-    isMe: false,
-  },
-  {
-    id: "17",
-    message: "Bye",
-    time: new Date(),
-    isMe: true,
-  },
 ];
+
+const ChatItem = (props: { message: Message }) => {
+  const { message } = props;
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    null
+  );
+
+  const handleClick = (event: any) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    console.log("handleClose");
+
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  console.log(open);
+
+  const id = open ? "simple-popover" + message.id : undefined;
+  return (
+    <>
+      <Popover
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        slotProps={{
+          paper: {
+            sx: {
+              backgroundColor: "transparent",
+              boxShadow: "none",
+            },
+          },
+        }}
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+      >
+        <EmojiPicker
+          style={{
+            marginBottom: 5,
+          }}
+          reactionsDefaultOpen
+        />
+      </Popover>
+      <Grid
+        item
+        sx={{
+          display: "flex",
+          justifyContent: message.isMe ? "flex-end" : "flex-start",
+          mt: 1,
+        }}
+        aria-describedby={id}
+      >
+        <Box
+          onClick={handleClick}
+          p={1}
+          borderRadius={5}
+          border={"1px solid black"}
+        >
+          {message.message}
+        </Box>
+      </Grid>
+    </>
+  );
+};
 
 const Conversation = (props: Props) => {
   return (
@@ -147,18 +197,7 @@ const Conversation = (props: Props) => {
       <Box p={2} mt={10}>
         <Grid container direction={"column"}>
           {messages.map((message) => (
-            <Grid
-              item
-              sx={{
-                display: "flex",
-                justifyContent: message.isMe ? "flex-end" : "flex-start",
-                mt: 1,
-              }}
-            >
-              <Box p={1} borderRadius={5} border={"1px solid black"}>
-                {message.message}
-              </Box>
-            </Grid>
+            <ChatItem message={message} key={message.id} />
           ))}
         </Grid>
       </Box>
