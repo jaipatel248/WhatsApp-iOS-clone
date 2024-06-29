@@ -4,6 +4,7 @@ import React from "react";
 import BottomChatBar from "./BottomChatBar";
 import TopChatBar from "./TopChatBar";
 import EmojiPicker from "emoji-picker-react";
+import useLongPress from "../../hooks/useLongPress";
 type Props = {};
 
 interface Message {
@@ -123,13 +124,15 @@ const ChatItem = (props: { message: Message }) => {
     null
   );
 
-  const handleClick = (event: any) => {
-    setAnchorEl(event.currentTarget);
+  const onLongPress = (event: any) => {
+    console.log(`Long press`);
+    console.log(event);
+    
+    
+    setAnchorEl(event.target);
   };
 
   const handleClose = () => {
-    console.log("handleClose");
-
     setAnchorEl(null);
   };
 
@@ -137,6 +140,10 @@ const ChatItem = (props: { message: Message }) => {
   console.log(open);
 
   const id = open ? "simple-popover" + message.id : undefined;
+  const longPressEvent = useLongPress({
+    onLongPress,
+   
+  })
   return (
     <>
       <Popover
@@ -148,11 +155,15 @@ const ChatItem = (props: { message: Message }) => {
           vertical: "bottom",
           horizontal: "center",
         }}
+        sx={{
+          backdropFilter: "blur(5px)",
+        }}
         slotProps={{
           paper: {
             sx: {
               backgroundColor: "transparent",
               boxShadow: "none",
+              backgroundImage:"none"
             },
           },
         }}
@@ -164,6 +175,9 @@ const ChatItem = (props: { message: Message }) => {
         <EmojiPicker
           style={{
             marginBottom: 5,
+          }}
+          onEmojiClick={() => {
+            handleClose();
           }}
           reactionsDefaultOpen
         />
@@ -178,10 +192,10 @@ const ChatItem = (props: { message: Message }) => {
         aria-describedby={id}
       >
         <Box
-          onClick={handleClick}
           p={1}
           borderRadius={5}
           border={"1px solid black"}
+          {...longPressEvent}
         >
           {message.message}
         </Box>

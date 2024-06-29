@@ -46,10 +46,10 @@ const router = createBrowserRouter([
 ]);
 function App() {
   const themeDefault = useTheme();
-  const isLightTheme = window.localStorage.getItem("theme") === "light";
+  const isDarkTheme = window.localStorage.getItem("theme") === "dark";
   const theme = createTheme({
     palette: {
-      mode: isLightTheme ? "light" : "dark", // Set the mode to 'dark'
+      mode: isDarkTheme ? "dark" : "light", // Set the mode to 'dark'
     },
     components: {
       MuiList: {
