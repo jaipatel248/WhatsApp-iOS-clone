@@ -1,4 +1,4 @@
-import { Box, Grid, Popover } from "@mui/material";
+import { Box, Grid, Paper, Popover } from "@mui/material";
 import React from "react";
 
 import BottomChatBar from "./BottomChatBar";
@@ -193,8 +193,8 @@ const ChatItem = (props: { message: Message }) => {
       >
         <Box
           p={1}
+          component={Paper}
           borderRadius={5}
-          border={"1px solid black"}
           {...longPressEvent}
         >
           {message.message}

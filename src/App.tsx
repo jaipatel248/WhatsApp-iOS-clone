@@ -15,6 +15,7 @@ import Conversation from "./screens/conversation/Conversation";
 import { LoadingProvider } from "./LoadingContext/LoadingContext";
 import NotFound from "./screens/NotFound";
 import RedirectHandler from "./screens/RedirectHandler";
+import useThemeDetector from "./hooks/theme";
 
 function MyAPP() {
   return (
@@ -59,7 +60,7 @@ const router = createBrowserRouter([
 });
 function App() {
   const themeDefault = useTheme();
-  const isDarkTheme = window.localStorage.getItem("theme") === "dark";
+  const isDarkTheme = useThemeDetector();
   const theme = createTheme({
     palette: {
       mode: isDarkTheme ? "dark" : "light", // Set the mode to 'dark'
