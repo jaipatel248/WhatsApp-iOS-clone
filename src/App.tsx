@@ -13,6 +13,8 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Home from "./screens/Home";
 import Conversation from "./screens/conversation/Conversation";
 import { LoadingProvider } from "./LoadingContext/LoadingContext";
+import NotFound from "./screens/NotFound";
+import RedirectHandler from "./screens/RedirectHandler";
 
 function MyAPP() {
   return (
@@ -30,20 +32,31 @@ function MyAPP() {
   );
 }
 
+const validBasename = "/WhatsApp-iOS-clone";
+
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MyAPP />,
-    children: [
+    element: (
+      <>
+        <MyAPP />
+      </>
+    ), children: [
       { path: "", element: <Home /> },
       { path: ":screen", element: <Home /> },
       {
         path: "chats/:id/",
         children: [{ path: "conversation", element: <Conversation /> }],
       },
+      { path: "*", element: <NotFound /> } // 404 page route
     ],
   },
-]);
+  { path: "*", element: <NotFound /> } // 404 page route
+
+], {
+  basename: validBasename,
+});
 function App() {
   const themeDefault = useTheme();
   const isDarkTheme = window.localStorage.getItem("theme") === "dark";
@@ -96,6 +109,7 @@ function App() {
               boxShadow: theme.shadows[1],
             }}
           >
+            <RedirectHandler validBasename={validBasename} />
             <RouterProvider router={router} />
           </Container>
         </Box>
