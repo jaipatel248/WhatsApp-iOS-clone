@@ -1,5 +1,6 @@
 {
   "name": "whatsapp_ios_clone",
+  "homepage": "https://jaipatel248.github.io/WhatsApp-iOS-clone",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,6 +17,7 @@
     "@types/react-dom": "^18.2.22",
     "dayjs": "^1.11.11",
     "emoji-picker-react": "^4.10.0",
+    "gh-pages": "^6.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
@@ -23,6 +25,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "vite --port 3000",
     "build": "vite build",
     "preview": "vite preview",
