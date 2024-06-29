@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/WhatsApp-iOS-clone/static/css/main.e6c13ad2.css",
-    "main.js": "/WhatsApp-iOS-clone/static/js/main.35d90cbe.js",
+    "main.css": "/WhatsApp-iOS-clone/static/css/main.a388f3cd.css",
+    "main.js": "/WhatsApp-iOS-clone/static/js/main.7c25cbcd.js",
     "static/js/453.a5d730f2.chunk.js": "/WhatsApp-iOS-clone/static/js/453.a5d730f2.chunk.js",
     "static/media/avatar.jpeg": "/WhatsApp-iOS-clone/static/media/avatar.1a70de3a0b1215f01529.jpeg",
     "index.html": "/WhatsApp-iOS-clone/index.html",
-    "main.e6c13ad2.css.map": "/WhatsApp-iOS-clone/static/css/main.e6c13ad2.css.map",
-    "main.35d90cbe.js.map": "/WhatsApp-iOS-clone/static/js/main.35d90cbe.js.map",
+    "main.a388f3cd.css.map": "/WhatsApp-iOS-clone/static/css/main.a388f3cd.css.map",
+    "main.7c25cbcd.js.map": "/WhatsApp-iOS-clone/static/js/main.7c25cbcd.js.map",
     "453.a5d730f2.chunk.js.map": "/WhatsApp-iOS-clone/static/js/453.a5d730f2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.35d90cbe.js"
+    "static/css/main.a388f3cd.css",
+    "static/js/main.7c25cbcd.js"
   ]
 }
