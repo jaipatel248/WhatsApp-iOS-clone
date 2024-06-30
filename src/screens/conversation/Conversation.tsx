@@ -125,10 +125,6 @@ const ChatItem = (props: { message: Message }) => {
   );
 
   const onLongPress = (event: any) => {
-    console.log(`Long press`);
-    console.log(event);
-    
-    
     setAnchorEl(event.target);
   };
 
@@ -137,7 +133,6 @@ const ChatItem = (props: { message: Message }) => {
   };
 
   const open = Boolean(anchorEl);
-  console.log(open);
 
   const id = open ? "simple-popover" + message.id : undefined;
   const longPressEvent = useLongPress({
@@ -157,6 +152,7 @@ const ChatItem = (props: { message: Message }) => {
         }}
         sx={{
           backdropFilter: "blur(5px)",
+          zIndex: 10,
         }}
         slotProps={{
           paper: {
@@ -193,6 +189,9 @@ const ChatItem = (props: { message: Message }) => {
       >
         <Box
           p={1}
+          sx={{
+            zIndex: open ? 11: 'auto',
+          }}
           component={Paper}
           borderRadius={5}
           {...longPressEvent}
