@@ -1,9 +1,9 @@
-import { Box, Grid, Paper, Popover } from "@mui/material";
-import React from "react";
+import { Badge, Box, Grid, Paper, Popover, useTheme } from "@mui/material";
+import React, { useCallback } from "react";
 
 import BottomChatBar from "./BottomChatBar";
 import TopChatBar from "./TopChatBar";
-import EmojiPicker from "emoji-picker-react";
+import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
 import useLongPress from "../../hooks/useLongPress";
 type Props = {};
 
@@ -123,12 +123,12 @@ const ChatItem = (props: { message: Message }) => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );
-
+  const [badgeContent, setBadgeContent] = React.useState("");
   const onLongPress = (event: any) => {
     setAnchorEl(event.target);
   };
 
-  const handleClose = () => {
+  const handleClose = (): void => {
     setAnchorEl(null);
   };
 
@@ -137,8 +137,14 @@ const ChatItem = (props: { message: Message }) => {
   const id = open ? "simple-popover" + message.id : undefined;
   const longPressEvent = useLongPress({
     onLongPress,
-   
   })
+
+  const handleEmojiClick = useCallback((emojiData: EmojiClickData) => {
+    setBadgeContent(emojiData.emoji);
+    handleClose();
+  }, []);
+
+
   return (
     <>
       <Popover
@@ -159,7 +165,7 @@ const ChatItem = (props: { message: Message }) => {
             sx: {
               backgroundColor: "transparent",
               boxShadow: "none",
-              backgroundImage:"none"
+              backgroundImage: "none"
             },
           },
         }}
@@ -172,9 +178,7 @@ const ChatItem = (props: { message: Message }) => {
           style={{
             marginBottom: 5,
           }}
-          onEmojiClick={() => {
-            handleClose();
-          }}
+          onEmojiClick={handleEmojiClick}
           reactionsDefaultOpen
         />
       </Popover>
@@ -187,18 +191,40 @@ const ChatItem = (props: { message: Message }) => {
         }}
         aria-describedby={id}
       >
-        <Box
-          p={1}
-          sx={{
-            zIndex: open ? 11: 'auto',
+
+        <Badge
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: message.isMe ? 'right' : 'left',
           }}
-          component={Paper}
-          borderRadius={5}
-          {...longPressEvent}
+
+          sx={{
+            ".MuiBadge-badge": {
+              zIndex: "auto",
+              // backgroundColor: theme.palette.background.default,
+            },
+            ".MuiBadge-anchorOriginBottomLeft": {
+              left: 10,
+            },
+            ".MuiBadge-anchorOriginBottomRight": {
+              right: 10,
+            },
+          }}
+          badgeContent={badgeContent}
         >
-          {message.message}
-        </Box>
-      </Grid>
+          <Box
+            p={1}
+            sx={{
+              zIndex: open ? 11 : 'auto',
+            }}
+            component={Paper}
+            borderRadius={5}
+            {...longPressEvent}
+          >
+            {message.message}
+          </Box>
+        </Badge>
+      </Grid >
     </>
   );
 };
