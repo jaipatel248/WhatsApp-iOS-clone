@@ -158,7 +158,7 @@ const ChatItem = (props: { message: Message }) => {
         }}
         sx={{
           backdropFilter: "blur(5px)",
-          zIndex: 10,
+          zIndex: open ? 10 : 'auto',
         }}
         slotProps={{
           paper: {
@@ -200,7 +200,7 @@ const ChatItem = (props: { message: Message }) => {
 
           sx={{
             ".MuiBadge-badge": {
-              zIndex: "auto",
+              zIndex: "0",
               // backgroundColor: theme.palette.background.default,
             },
             ".MuiBadge-anchorOriginBottomLeft": {
