@@ -108,7 +108,7 @@ const messages: Message[] = [
     message: "Bye",
     time: new Date(),
     isMe: false,
-    reactions: ["😂", "😍", "😢"],
+    reactions: ["😂"],
   },
   {
     id: "15",
