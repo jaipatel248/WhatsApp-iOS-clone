@@ -242,10 +242,7 @@ const ChatItem = (props: { message: Message }) => {
             borderRadius={5}
             {...longPressEvent}
           >
-            <Typography variant="body2">{message.message}</Typography>
-            <Typography variant="caption" fontSize={10} align={"right"}>
-              {message.time.toLocaleTimeString()}
-            </Typography>
+            {message.message}
           </Box>
         </Badge>
       </Grid>
