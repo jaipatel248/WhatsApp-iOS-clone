@@ -1,8 +1,8 @@
 import React from "react";
+import CssBaseline from "@mui/material/CssBaseline";
 import {
   Box,
   Container,
-  CssBaseline,
   Paper,
   ThemeProvider,
   createTheme,
