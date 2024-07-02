@@ -1,5 +1,13 @@
-import { Badge, Box, Grid, Paper, Popover, useTheme } from "@mui/material";
-import React, { useCallback } from "react";
+import {
+  Badge,
+  Box,
+  Grid,
+  Paper,
+  Popover,
+  Typography,
+  useTheme,
+} from "@mui/material";
+import React, { useCallback, useMemo } from "react";
 
 import BottomChatBar from "./BottomChatBar";
 import TopChatBar from "./TopChatBar";
@@ -12,6 +20,7 @@ interface Message {
   message: string;
   time: Date;
   isMe: boolean;
+  reactions?: string[];
 }
 const messages: Message[] = [
   {
@@ -19,6 +28,7 @@ const messages: Message[] = [
     message: "Hello",
     time: new Date(),
     isMe: true,
+    reactions: ["😂", "😍", "😢"],
   },
   {
     id: "2",
@@ -43,6 +53,7 @@ const messages: Message[] = [
     message: "How about you",
     time: new Date(),
     isMe: false,
+    reactions: ["😂", "😍"],
   },
   {
     id: "6",
@@ -97,6 +108,7 @@ const messages: Message[] = [
     message: "Bye",
     time: new Date(),
     isMe: false,
+    reactions: ["😂", "😍", "😢"],
   },
   {
     id: "15",
@@ -123,7 +135,7 @@ const ChatItem = (props: { message: Message }) => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );
-  const [badgeContent, setBadgeContent] = React.useState("");
+  const [reactions, setReactions] = React.useState(message.reactions || []);
   const onLongPress = (event: any) => {
     setAnchorEl(event.target);
   };
@@ -131,19 +143,29 @@ const ChatItem = (props: { message: Message }) => {
   const handleClose = (): void => {
     setAnchorEl(null);
   };
+  const reaction = useMemo(() => {
+    if (reactions.length) {
+      if (reactions.length === 1) {
+        return reactions[0];
+      }
+      return reactions[0] + " " + reactions.length;
+    }
+    return "";
+  }, [reactions]);
 
   const open = Boolean(anchorEl);
 
   const id = open ? "simple-popover" + message.id : undefined;
   const longPressEvent = useLongPress({
     onLongPress,
-  })
+  });
 
   const handleEmojiClick = useCallback((emojiData: EmojiClickData) => {
-    setBadgeContent(emojiData.emoji);
+    setReactions((prev) => {
+      return [...prev, emojiData.emoji];
+    });
     handleClose();
   }, []);
-
 
   return (
     <>
@@ -158,14 +180,14 @@ const ChatItem = (props: { message: Message }) => {
         }}
         sx={{
           backdropFilter: "blur(5px)",
-          zIndex: open ? 10 : 'auto',
+          zIndex: open ? 10 : "auto",
         }}
         slotProps={{
           paper: {
             sx: {
               backgroundColor: "transparent",
               boxShadow: "none",
-              backgroundImage: "none"
+              backgroundImage: "none",
             },
           },
         }}
@@ -191,40 +213,42 @@ const ChatItem = (props: { message: Message }) => {
         }}
         aria-describedby={id}
       >
-
         <Badge
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: message.isMe ? 'right' : 'left',
+            vertical: "bottom",
+            horizontal: message.isMe ? "right" : "left",
           }}
-
           sx={{
             ".MuiBadge-badge": {
               zIndex: "0",
-              // backgroundColor: theme.palette.background.default,
+              // backgroundColor: 'red',
+              elivation: 2,
             },
             ".MuiBadge-anchorOriginBottomLeft": {
-              left: 10,
+              left: 15,
             },
             ".MuiBadge-anchorOriginBottomRight": {
-              right: 10,
+              right: 15,
             },
           }}
-          badgeContent={badgeContent}
+          badgeContent={reaction}
         >
           <Box
             p={1}
             sx={{
-              zIndex: open ? 11 : 'auto',
+              zIndex: open ? 11 : "auto",
             }}
             component={Paper}
             borderRadius={5}
             {...longPressEvent}
           >
-            {message.message}
+            <Typography variant="body2">{message.message}</Typography>
+            <Typography variant="caption" fontSize={10} align={"right"}>
+              {message.time.toLocaleTimeString()}
+            </Typography>
           </Box>
         </Badge>
-      </Grid >
+      </Grid>
     </>
   );
 };
