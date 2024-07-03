@@ -225,7 +225,7 @@ const ChatItem = (props: { message: Message }) => {
           }}
           sx={{
             ".MuiBadge-badge": {
-              zIndex: "0",
+              zIndex: open ? 11 : "auto",
               // backgroundColor: 'red',
               elivation: 2,
             },
