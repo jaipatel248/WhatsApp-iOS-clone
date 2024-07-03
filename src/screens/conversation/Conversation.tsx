@@ -214,6 +214,7 @@ const ChatItem = (props: { message: Message }) => {
           display: "flex",
           justifyContent: message.isMe ? "flex-end" : "flex-start",
           mt: 1,
+          mb: reactions.length ? 1 : 0,
         }}
         aria-describedby={id}
       >
