@@ -1,24 +1,31 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback } from "react";
 
 interface Options {
-  onLongPress: (e:any) => void;
+  onLongPress: (currentTarget: any) => void;
   onClick?: () => void;
   longPressTime?: number;
 }
 
-const useLongPress = (
-  { onLongPress, onClick, longPressTime = 500 }: Options
-) => {
+const useLongPress = ({
+  onLongPress,
+  onClick,
+  longPressTime = 500,
+}: Options) => {
   const [isPressing, setIsPressing] = useState(false);
   const timeoutRef = useRef<number | null>(null);
 
-  const startPress = useCallback((e: any) => {
-    setIsPressing(true);
-    timeoutRef.current = window.setTimeout(() => {
-      onLongPress(e);
-      setIsPressing(false);
-    }, longPressTime);
-  }, [onLongPress, longPressTime]);
+  const startPress = useCallback(
+    (e: any) => {
+      e.preventDefault();
+      setIsPressing(true);
+      const currentTarget = e.currentTarget;
+      timeoutRef.current = window.setTimeout(() => {
+        onLongPress(currentTarget);
+        setIsPressing(false);
+      }, longPressTime);
+    },
+    [onLongPress, longPressTime]
+  );
 
   const endPress = useCallback(() => {
     if (timeoutRef.current) {

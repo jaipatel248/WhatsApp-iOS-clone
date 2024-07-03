@@ -1,6 +1,8 @@
 import {
   Badge,
   Box,
+  Button,
+  Card,
   Grid,
   Paper,
   Popover,
@@ -13,6 +15,7 @@ import BottomChatBar from "./BottomChatBar";
 import TopChatBar from "./TopChatBar";
 import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
 import useLongPress from "../../hooks/useLongPress";
+import dayjs from "dayjs";
 type Props = {};
 
 interface Message {
@@ -108,7 +111,7 @@ const messages: Message[] = [
     message: "Bye",
     time: new Date(),
     isMe: false,
-    reactions: ["😂"],
+    reactions: ["😂", "a"],
   },
   {
     id: "15",
@@ -136,8 +139,8 @@ const ChatItem = (props: { message: Message }) => {
     null
   );
   const [reactions, setReactions] = React.useState(message.reactions || []);
-  const onLongPress = (event: any) => {
-    setAnchorEl(event.target);
+  const onLongPress = (currentTarget: any) => {
+    setAnchorEl(currentTarget);
   };
 
   const handleClose = (): void => {
@@ -155,7 +158,7 @@ const ChatItem = (props: { message: Message }) => {
 
   const open = Boolean(anchorEl);
 
-  const id = open ? "simple-popover" + message.id : undefined;
+  const id = open ? "simple-popover_" + message.id : undefined;
   const longPressEvent = useLongPress({
     onLongPress,
   });
@@ -242,7 +245,10 @@ const ChatItem = (props: { message: Message }) => {
             borderRadius={5}
             {...longPressEvent}
           >
-            {message.message}
+            <Typography>{message.message}</Typography>
+            <Typography variant="caption">
+              {dayjs(message.time).format("hh:mm A")}
+            </Typography>
           </Box>
         </Badge>
       </Grid>
