@@ -246,6 +246,13 @@ const ChatItem = (props: { message: Message }) => {
             component={Paper}
             borderRadius={5}
             {...longPressEvent}
+            onDoubleClick={() => {
+              setReactions((prev) => {
+                if (prev.includes("❤️"))
+                  return prev.filter((item) => item !== "❤️");
+                return [...prev, "❤️"];
+              });
+            }}
           >
             <Typography>{message.message}</Typography>
             <Stack direction="row" justifyContent="flex-end">
