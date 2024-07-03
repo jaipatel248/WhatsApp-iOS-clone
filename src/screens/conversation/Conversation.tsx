@@ -6,6 +6,7 @@ import {
   Grid,
   Paper,
   Popover,
+  Stack,
   Typography,
   useTheme,
 } from "@mui/material";
@@ -241,14 +242,17 @@ const ChatItem = (props: { message: Message }) => {
             sx={{
               zIndex: open ? 11 : "auto",
             }}
+            minWidth={100}
             component={Paper}
             borderRadius={5}
             {...longPressEvent}
           >
             <Typography>{message.message}</Typography>
-            <Typography variant="caption">
-              {dayjs(message.time).format("hh:mm A")}
-            </Typography>
+            <Stack direction="row" justifyContent="flex-end">
+              <Typography variant="caption">
+                {dayjs(message.time).format("hh:mm A")}
+              </Typography>
+            </Stack>
           </Box>
         </Badge>
       </Grid>
