@@ -211,6 +211,8 @@ const ChatItem = (props: { message: Message }) => {
     handleClose();
   }, []);
 
+  const theme = useTheme();
+
   return (
     <>
       <Popover
@@ -263,19 +265,20 @@ const ChatItem = (props: { message: Message }) => {
             vertical: "bottom",
             horizontal: message.isMe ? "right" : "left",
           }}
+          showZero={false}
           sx={{
             ".MuiBadge-badge": {
               zIndex: open ? 11 : "auto",
-              elivation: 2,
+              background: theme.palette.divider,
             },
             ".MuiBadge-anchorOriginBottomLeft": {
-              left: 15,
+              left: 20,
             },
             ".MuiBadge-anchorOriginBottomRight": {
-              right: 15,
+              right: 20,
             },
           }}
-          badgeContent={reaction}
+          badgeContent={reaction || 0}
         >
           <Box
             p={1}
