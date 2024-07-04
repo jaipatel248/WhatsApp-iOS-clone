@@ -19,12 +19,19 @@ import useLongPress from "../../hooks/useLongPress";
 import dayjs from "dayjs";
 type Props = {};
 
+const currentUserId = "10";
+
+interface Reactions {
+  user_id: string;
+  reaction: string;
+}
+
 interface Message {
   id: string;
   message: string;
   time: Date;
   isMe: boolean;
-  reactions?: string[];
+  reactions?: Reactions[];
 }
 const messages: Message[] = [
   {
@@ -32,7 +39,16 @@ const messages: Message[] = [
     message: "Hello",
     time: new Date(),
     isMe: true,
-    reactions: ["😂", "😍", "😢"],
+    reactions: [
+      {
+        user_id: "1",
+        reaction: "😂",
+      },
+      {
+        user_id: "2",
+        reaction: "😍",
+      },
+    ],
   },
   {
     id: "2",
@@ -57,7 +73,16 @@ const messages: Message[] = [
     message: "How about you",
     time: new Date(),
     isMe: false,
-    reactions: ["😂", "😍"],
+    reactions: [
+      {
+        user_id: "1",
+        reaction: "❤️",
+      },
+      {
+        user_id: "2",
+        reaction: "😍",
+      },
+    ],
   },
   {
     id: "6",
@@ -112,7 +137,16 @@ const messages: Message[] = [
     message: "Bye",
     time: new Date(),
     isMe: false,
-    reactions: ["😂", "a"],
+    reactions: [
+      {
+        user_id: "1",
+        reaction: "😂",
+      },
+      {
+        user_id: "2",
+        reaction: "",
+      },
+    ],
   },
   {
     id: "15",
@@ -150,9 +184,9 @@ const ChatItem = (props: { message: Message }) => {
   const reaction = useMemo(() => {
     if (reactions.length) {
       if (reactions.length === 1) {
-        return reactions[0];
+        return reactions[0].reaction;
       }
-      return reactions[0] + " " + reactions.length;
+      return reactions[0].reaction + " " + reactions.length;
     }
     return "";
   }, [reactions]);
@@ -166,7 +200,13 @@ const ChatItem = (props: { message: Message }) => {
 
   const handleEmojiClick = useCallback((emojiData: EmojiClickData) => {
     setReactions((prev) => {
-      return [...prev, emojiData.emoji];
+      return [
+        ...prev.filter((item) => item.user_id !== currentUserId),
+        {
+          user_id: currentUserId,
+          reaction: emojiData.emoji,
+        },
+      ];
     });
     handleClose();
   }, []);
@@ -226,7 +266,6 @@ const ChatItem = (props: { message: Message }) => {
           sx={{
             ".MuiBadge-badge": {
               zIndex: open ? 11 : "auto",
-              // backgroundColor: 'red',
               elivation: 2,
             },
             ".MuiBadge-anchorOriginBottomLeft": {
@@ -249,9 +288,16 @@ const ChatItem = (props: { message: Message }) => {
             {...longPressEvent}
             onDoubleClick={() => {
               setReactions((prev) => {
-                if (prev.includes("❤️"))
-                  return prev.filter((item) => item !== "❤️");
-                return [...prev, "❤️"];
+                if (prev.some((item) => item.user_id == currentUserId)) {
+                  return prev.filter((item) => item.user_id !== currentUserId);
+                }
+                return [
+                  ...prev.filter((item) => item.user_id !== currentUserId),
+                  {
+                    user_id: currentUserId,
+                    reaction: "❤️",
+                  },
+                ];
               });
             }}
           >
