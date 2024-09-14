@@ -10,12 +10,12 @@ import {
 } from "@mui/material";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
-import Home from "./screens/Home";
-import Conversation from "./screens/conversation/Conversation";
-import { LoadingProvider } from "./LoadingContext/LoadingContext";
-import NotFound from "./screens/NotFound";
-import RedirectHandler from "./screens/RedirectHandler";
-import useThemeDetector from "./hooks/theme";
+import Home from "./src/screens/Home";
+import Conversation from "./src/screens/conversation/Conversation";
+import { LoadingProvider } from "./src/LoadingContext/LoadingContext";
+import NotFound from "./src/screens/NotFound";
+import RedirectHandler from "./src/screens/RedirectHandler";
+import useThemeDetector from "./src/hooks/theme";
 
 function MyAPP() {
   return (
