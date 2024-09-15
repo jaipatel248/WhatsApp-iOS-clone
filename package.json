@@ -3,7 +3,10 @@
   "homepage": "https://jaipatel248.github.io/WhatsApp-iOS-clone",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "predeploy": "nx build whatsapp",
+    "deploy": "gh-pages -d build"
+  },
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.13.3",

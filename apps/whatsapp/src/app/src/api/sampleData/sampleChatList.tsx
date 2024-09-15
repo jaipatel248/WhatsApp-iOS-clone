@@ -5,7 +5,7 @@ const sampleChatList: IChatObject[] = [
     name: "John",
     last_chat_date: "2024-03-27",
     unread_message_count: 2,
-    last_message: "Hey, how's it going?",
+    last_message: "Hey, How's it going?",
   },
   {
     id: 2,
