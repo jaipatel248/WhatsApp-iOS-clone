@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "predeploy": "nx build whatsapp",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "private": true,
   "dependencies": {
