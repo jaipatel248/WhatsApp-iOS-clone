@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@whatsapp/conversation-profile-ui": [
+        "libs/conversation-profile-ui/src/index.ts"
+      ],
       "@whatsapp/test-util": ["libs/test-util/src/index.ts"]
     }
   },
