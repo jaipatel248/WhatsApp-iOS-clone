@@ -1,1 +1,1 @@
-export { ConversationProfileUi } from './lib/conversation-profile-ui';
+export { ConversationProfile } from './lib/ConversationProfile';
