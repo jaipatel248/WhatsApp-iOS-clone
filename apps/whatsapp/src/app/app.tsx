@@ -1,5 +1,5 @@
-import React from "react";
-import CssBaseline from "@mui/material/CssBaseline";
+import React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
 import {
   Box,
   Container,
@@ -7,24 +7,25 @@ import {
   ThemeProvider,
   createTheme,
   useTheme,
-} from "@mui/material";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+} from '@mui/material';
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 
-import Home from "./src/screens/Home";
-import Conversation from "./src/screens/conversation/Conversation";
-import { LoadingProvider } from "./src/LoadingContext/LoadingContext";
-import NotFound from "./src/screens/NotFound";
-import RedirectHandler from "./src/screens/RedirectHandler";
-import useThemeDetector from "./src/hooks/theme";
+import Home from './src/screens/Home';
+import Conversation from './src/screens/conversation/Conversation';
+import { LoadingProvider } from './src/LoadingContext/LoadingContext';
+import NotFound from './src/screens/NotFound';
+import RedirectHandler from './src/screens/RedirectHandler';
+import useThemeDetector from './src/hooks/theme';
+import { ConversationProfileUi } from '@whatsapp/conversation-profile-ui';
 
 function MyAPP() {
   return (
     <>
       <Box
         style={{
-          overflow: "auto",
-          minHeight: "100vh",
-          paddingBottom: "100px",
+          overflow: 'auto',
+          minHeight: '100vh',
+          paddingBottom: '100px',
         }}
       >
         <Outlet />
@@ -33,37 +34,45 @@ function MyAPP() {
   );
 }
 
-const validBasename = "/WhatsApp-iOS-clone";
+const validBasename = '/WhatsApp-iOS-clone';
 
-
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: (
+        <>
+          <MyAPP />
+        </>
+      ),
+      children: [
+        { path: '', element: <Home /> },
+        { path: ':screen', element: <Home /> },
+        {
+          path: 'chats/:id/',
+          children: [
+            { path: 'conversation', element: <Conversation /> },
+            {
+              path: 'conversation/profile',
+              element: <ConversationProfileUi />,
+            },
+          ],
+        },
+        { path: '*', element: <NotFound /> }, // 404 page route
+      ],
+    },
+    { path: '*', element: <NotFound /> }, // 404 page route
+  ],
   {
-    path: "/",
-    element: (
-      <>
-        <MyAPP />
-      </>
-    ), children: [
-      { path: "", element: <Home /> },
-      { path: ":screen", element: <Home /> },
-      {
-        path: "chats/:id/",
-        children: [{ path: "conversation", element: <Conversation /> }],
-      },
-      { path: "*", element: <NotFound /> } // 404 page route
-    ],
-  },
-  { path: "*", element: <NotFound /> } // 404 page route
-
-], {
-  basename: validBasename,
-});
+    basename: validBasename,
+  }
+);
 function App() {
   const themeDefault = useTheme();
   const isDarkTheme = useThemeDetector();
   const theme = createTheme({
     palette: {
-      mode: isDarkTheme ? "dark" : "light", // Set the mode to 'dark'
+      mode: isDarkTheme ? 'dark' : 'light', // Set the mode to 'dark'
     },
     components: {
       MuiList: {
@@ -76,7 +85,7 @@ function App() {
       MuiAppBar: {
         defaultProps: {
           component: Paper,
-          color: "default",
+          color: 'default',
         },
       },
       MuiIconButton: {
@@ -88,7 +97,7 @@ function App() {
       },
       MuiTypography: {
         defaultProps: {
-          color: "textPrimary",
+          color: 'textPrimary',
         },
       },
     },
@@ -106,7 +115,7 @@ function App() {
             style={{
               padding: 0,
               background: theme.palette.background.paper,
-              minHeight: "100vh",
+              minHeight: '100vh',
               boxShadow: theme.shadows[1],
             }}
           >

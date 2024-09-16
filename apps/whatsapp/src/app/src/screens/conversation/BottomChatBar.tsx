@@ -7,6 +7,7 @@ import {
   Box,
   Tooltip,
   useTheme,
+  Stack,
 } from '@mui/material';
 import React, { MouseEvent, useCallback } from 'react';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
@@ -106,23 +107,23 @@ const BottomChatBar = ({ onSendMesssage }: Props) => {
                 fullWidth
               />
             </Box>
-            <Box sx={{ display: 'flex', flexWrap: 'nowrap' }}>
-              <Tooltip title="Open settings">
+            <Stack direction={'row'}>
+              <Tooltip title="Send money">
                 <IconButton>
                   <CurrencyRupeeIcon />
                 </IconButton>
               </Tooltip>
-              <Tooltip title="Open settings">
+              <Tooltip title="Open camera">
                 <IconButton>
                   <CameraAltOutlinedIcon />
                 </IconButton>
               </Tooltip>
-              <Tooltip title="Open settings">
+              <Tooltip title="Record voice">
                 <IconButton>
                   <MicNoneOutlinedIcon />
                 </IconButton>
               </Tooltip>
-            </Box>
+            </Stack>
           </Toolbar>
         </AppBar>
         <ClickOutsideComponent onOutsideClick={handleClickAway}>
