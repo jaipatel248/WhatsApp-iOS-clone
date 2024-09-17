@@ -18,7 +18,8 @@
       "@whatsapp/conversation-profile-ui": [
         "libs/conversation-profile-ui/src/index.ts"
       ],
-      "@whatsapp/test-util": ["libs/test-util/src/index.ts"]
+      "@whatsapp/test-util": ["libs/test-util/src/index.ts"],
+      "@whatsapp/whatsapp-ui": ["libs/whatsapp-ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
