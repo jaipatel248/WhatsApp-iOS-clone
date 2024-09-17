@@ -1,22 +1,15 @@
 import React from 'react';
 import {
-  Avatar,
-  List,
-  Typography,
   ListItem,
   ListItemAvatar,
   ListItemText,
-  Paper,
   useTheme,
   IconButton,
-  Card,
-  CardActionArea,
   ListItemSecondaryAction,
   ButtonBase,
   SvgIconProps,
   Divider,
 } from '@mui/material';
-import {deepOrange} from '@mui/material/colors';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 interface ListItemComponentProps {
@@ -49,7 +42,6 @@ const ListItemComponent: React.FC<ListItemComponentProps> = ({Icon, name}) => {
         <ListItemSecondaryAction>
           <NavigateNextIcon />
         </ListItemSecondaryAction>
-        <Divider variant='inset' component='li' />
       </ListItem>
     </>
   );

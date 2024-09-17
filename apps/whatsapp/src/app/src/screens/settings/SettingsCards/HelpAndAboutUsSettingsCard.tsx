@@ -17,11 +17,10 @@ const HelpAndAboutUsSettingsCard: React.FC = () => {
         padding: theme.spacing(0),
       }}
     >
-      <ListItemComponent name="Help" bgcolor={blue[500]} Icon={InfoIcon} />
+      <ListItemComponent name="Help" Icon={InfoIcon} />
       <Divider />
       <ListItemComponent
         name="Tell a Friend"
-        bgcolor={red[500]}
         Icon={FavoriteIcon}
       />
     </List>

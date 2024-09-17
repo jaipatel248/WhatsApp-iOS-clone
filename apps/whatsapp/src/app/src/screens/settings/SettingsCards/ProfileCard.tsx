@@ -56,7 +56,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, avatarUrl }) => {
       </ListItem>
       <Divider />
       <ListItemComponent
-        bgcolor={blue[500]}
         name="Avatar"
         Icon={AccountBoxIcon}
       />
