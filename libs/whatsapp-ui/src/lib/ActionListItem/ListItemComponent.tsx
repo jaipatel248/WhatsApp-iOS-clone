@@ -1,62 +1,40 @@
-import React from "react";
+import React from 'react';
 import {
-  Avatar,
-  List,
-  Typography,
   ListItem,
   ListItemAvatar,
   ListItemText,
-  Paper,
   useTheme,
-  Divider,
-  Card,
-  CardActionArea,
+  IconButton,
   ListItemSecondaryAction,
   ButtonBase,
   SvgIconProps,
-} from "@mui/material";
-import { deepOrange } from "@mui/material/colors";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+} from '@mui/material';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 interface ListItemComponentProps {
   name: string;
   Icon: React.FC<SvgIconProps>;
-  bgcolor?: string;
 }
-const ListItemComponent: React.FC<ListItemComponentProps> = ({
-  Icon,
-  name,
-  bgcolor = "blue",
-}) => {
+const ListItemComponent: React.FC<ListItemComponentProps> = ({Icon, name}) => {
   const theme = useTheme();
   return (
     <ListItem
       component={ButtonBase}
-      alignItems="center"
+      alignItems='center'
       sx={{
         paddingY: theme.spacing(0.5),
-      }}
-    >
+      }}>
       <ListItemAvatar
         sx={{
           minWidth: 40,
-        }}
-      >
-        <Avatar
-          variant="square"
-          sx={{
-            bgcolor,
-            width: 26,
-            height: 26,
-            borderRadius: 1,
-          }}
-        >
+        }}>
+        <IconButton size='small'>
           <Icon
             sx={{
-              width: 20,
+              color: theme.palette.text.primary,
             }}
           />
-        </Avatar>
+        </IconButton>
       </ListItemAvatar>
       <ListItemText primary={name} />
       <ListItemSecondaryAction>
