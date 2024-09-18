@@ -1,6 +1,6 @@
 import React from 'react';
 import {useTheme, SvgIconProps, List, Card, Divider} from '@mui/material';
-import ListItemComponent from './ListItemComponent';
+import {ListItemComponent} from './ListItemComponent';
 
 interface ListItemComponent {
   name: string;

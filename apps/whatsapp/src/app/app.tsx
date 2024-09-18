@@ -16,7 +16,7 @@ import { LoadingProvider } from './src/LoadingContext/LoadingContext';
 import NotFound from './src/screens/NotFound';
 import RedirectHandler from './src/screens/RedirectHandler';
 import useThemeDetector from './src/hooks/theme';
-import { ConversationProfileUi } from '@whatsapp/conversation-profile-ui';
+import { ConversationProfile } from '@whatsapp/conversation-profile-ui';
 
 function MyAPP() {
   return (
@@ -54,7 +54,7 @@ const router = createBrowserRouter(
             { path: 'conversation', element: <Conversation /> },
             {
               path: 'conversation/profile',
-              element: <ConversationProfileUi />,
+              element: <ConversationProfile />,
             },
           ],
         },

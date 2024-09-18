@@ -15,7 +15,7 @@ interface ListItemComponentProps {
   name: string;
   Icon: React.FC<SvgIconProps>;
 }
-const ListItemComponent: React.FC<ListItemComponentProps> = ({Icon, name}) => {
+export const ListItemComponent: React.FC<ListItemComponentProps> = ({Icon, name}) => {
   const theme = useTheme();
   return (
     <ListItem
@@ -44,4 +44,3 @@ const ListItemComponent: React.FC<ListItemComponentProps> = ({Icon, name}) => {
   );
 };
 
-export default ListItemComponent;
