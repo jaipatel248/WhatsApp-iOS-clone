@@ -17,20 +17,19 @@ import NotFound from './src/screens/NotFound';
 import RedirectHandler from './src/screens/RedirectHandler';
 import useThemeDetector from './src/hooks/theme';
 import { ConversationProfile } from '@whatsapp/conversation-profile-ui';
+import {ScrollToTop} from '@whatsapp/whatsapp-ui';
 
 function MyAPP() {
   return (
-    <>
-      <Box
-        style={{
-          overflow: 'auto',
-          minHeight: '100vh',
-          paddingBottom: '100px',
-        }}
-      >
-        <Outlet />
-      </Box>
-    </>
+    <Box
+      style={{
+        overflow: 'auto',
+        minHeight: '100vh',
+        paddingBottom: '100px',
+      }}>
+      <ScrollToTop />
+      <Outlet />
+    </Box>
   );
 }
 
@@ -40,32 +39,28 @@ const router = createBrowserRouter(
   [
     {
       path: '/',
-      element: (
-        <>
-          <MyAPP />
-        </>
-      ),
+      element: <MyAPP />,
       children: [
-        { path: '', element: <Home /> },
-        { path: ':screen', element: <Home /> },
+        {path: '', element: <Home />},
+        {path: ':screen', element: <Home />},
         {
           path: 'chats/:id/',
           children: [
-            { path: 'conversation', element: <Conversation /> },
+            {path: 'conversation', element: <Conversation />},
             {
               path: 'conversation/profile',
               element: <ConversationProfile />,
             },
           ],
         },
-        { path: '*', element: <NotFound /> }, // 404 page route
+        {path: '*', element: <NotFound />}, // 404 page route
       ],
     },
-    { path: '*', element: <NotFound /> }, // 404 page route
+    {path: '*', element: <NotFound />}, // 404 page route
   ],
   {
     basename: validBasename,
-  }
+  },
 );
 function App() {
   const themeDefault = useTheme();
@@ -109,16 +104,14 @@ function App() {
         <Box
           sx={{
             background: theme.palette.primary.contrastText,
-          }}
-        >
+          }}>
           <Container
             style={{
               padding: 0,
               background: theme.palette.background.paper,
               minHeight: '100vh',
               boxShadow: theme.shadows[1],
-            }}
-          >
+            }}>
             <RedirectHandler validBasename={validBasename} />
             <RouterProvider router={router} />
           </Container>
