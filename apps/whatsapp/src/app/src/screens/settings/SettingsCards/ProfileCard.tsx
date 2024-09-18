@@ -6,18 +6,14 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-  Paper,
   useTheme,
   Divider,
   Card,
-  CardActionArea,
-  ListItemSecondaryAction,
   ButtonBase,
-} from "@mui/material";
-import { blue } from "@mui/material/colors";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import ListItemComponent from "./ListItemComponent";
-import avatar from "../../../assets/images/avatar.jpeg";
+} from '@mui/material';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import avatar from '../../../assets/images/avatar.jpeg';
+import {ListItemComponent} from '@whatsapp/whatsapp-ui';
 interface ProfileCardProps {
   name: string;
   avatarUrl: string;
@@ -30,36 +26,30 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, avatarUrl }) => {
       component={Card}
       elevation={3}
       sx={{
-        borderRadius: "10px",
+        borderRadius: '10px',
         marginY: theme.spacing(2),
         padding: theme.spacing(0),
-      }}
-    >
-      <ListItem alignItems="flex-start" component={ButtonBase}>
+      }}>
+      <ListItem alignItems='flex-start' component={ButtonBase}>
         <ListItemAvatar>
-          <Avatar alt={name} src={avatar} sizes="large" />
+          <Avatar alt={name} src={avatar} sizes='large' />
         </ListItemAvatar>
         <ListItemText
           primary={name}
           secondary={
             <Typography
               style={{
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
-            >
-              {"while(alive) {learn()}"}
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}>
+              {'while(alive) {learn()}'}
             </Typography>
           }
         />
       </ListItem>
       <Divider />
-      <ListItemComponent
-        bgcolor={blue[500]}
-        name="Avatar"
-        Icon={AccountBoxIcon}
-      />
+      <ListItemComponent name='Profile' Icon={AccountBoxIcon} />
     </List>
   );
 };
