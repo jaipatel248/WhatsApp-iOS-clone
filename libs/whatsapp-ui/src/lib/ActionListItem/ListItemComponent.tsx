@@ -40,7 +40,7 @@ export const ListItemComponent: React.FC<ListItemComponentProps> = ({Icon, name,
           />
         </IconButton>
       </ListItemAvatar>
-      <ListItemText primary={name} secondary={actionText} />
+      <ListItemText primary={name} secondary={secondary} />
       <ListItemSecondaryAction>
         <Stack direction='row' alignItems={'center'}>
           <Typography variant='body2'>{actionText}</Typography>
