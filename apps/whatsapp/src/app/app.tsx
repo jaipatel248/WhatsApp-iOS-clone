@@ -94,6 +94,13 @@ function App() {
         defaultProps: {
           color: 'textPrimary',
         },
+        styleOverrides: {
+          body2: () => ({
+            '&.MuiTypography-root': {
+              opacity: 0.7,
+            },
+          }),
+        },
       },
       MuiPaper: {
         defaultProps: {
