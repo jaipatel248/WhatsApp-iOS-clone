@@ -65,21 +65,21 @@ export const ConversationProfile = () => {
       </Grid>
       <ListItems
         items={[
-          {name: 'Media, links and docs', Icon: CropOriginalIcon},
-          {name: 'Starred Messages', Icon: StarBorderIcon},
+          {name: 'Media, links and docs', Icon: CropOriginalIcon, actionText: 423},
+          {name: 'Starred Messages', Icon: StarBorderIcon, actionText: 'None'},
         ]}
       />
       <ListItems
         items={[
           {name: 'Notifications', Icon: NotificationsNoneIcon},
           {name: 'Wallpaper', Icon: AcUnitIcon},
-          {name: 'Save to Photos', Icon: SaveAltIcon},
+          {name: 'Save to Photos', Icon: SaveAltIcon, actionText: 'Always'},
         ]}
       />
 
       <ListItems
         items={[
-          {name: 'Disappearing Messages', Icon: HistoryToggleOffIcon},
+          {name: 'Disappearing Messages', Icon: HistoryToggleOffIcon, actionText: 'Off'},
           {name: 'Lock Chat', Icon: LockOutlinedIcon},
           {name: 'Encryption', Icon: ChatIcon},
         ]}

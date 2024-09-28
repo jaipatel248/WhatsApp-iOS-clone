@@ -10,6 +10,7 @@ export const ActionableCard = ({Icon, text}: ActionableCard) => {
     <Paper
       component={ButtonBase}
       sx={{
+        borderRadius: 2,
         width: '100%',
       }}>
       <Stack p={1.5} direction={'column'} alignItems={'center'} spacing={1}>

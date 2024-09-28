@@ -8,14 +8,18 @@ import {
   ListItemSecondaryAction,
   ButtonBase,
   SvgIconProps,
+  Stack,
+  Typography,
 } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
-interface ListItemComponentProps {
+export interface ListItemComponentProps {
   name: string;
   Icon: React.FC<SvgIconProps>;
+  secondary?: string;
+  actionText?: string | number;
 }
-export const ListItemComponent: React.FC<ListItemComponentProps> = ({Icon, name}) => {
+export const ListItemComponent: React.FC<ListItemComponentProps> = ({Icon, name, secondary, actionText}) => {
   const theme = useTheme();
   return (
     <ListItem
@@ -36,9 +40,12 @@ export const ListItemComponent: React.FC<ListItemComponentProps> = ({Icon, name}
           />
         </IconButton>
       </ListItemAvatar>
-      <ListItemText primary={name} />
+      <ListItemText primary={name} secondary={actionText} />
       <ListItemSecondaryAction>
-        <NavigateNextIcon />
+        <Stack direction='row' alignItems={'center'}>
+          <Typography variant='body2'>{actionText}</Typography>
+          <NavigateNextIcon />
+        </Stack>
       </ListItemSecondaryAction>
     </ListItem>
   );
