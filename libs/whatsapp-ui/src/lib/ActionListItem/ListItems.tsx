@@ -1,5 +1,5 @@
 import React from 'react';
-import {useTheme, SvgIconProps, List, Card, Divider} from '@mui/material';
+import {useTheme, SvgIconProps, List, Paper, Divider} from '@mui/material';
 import {ListItemComponent} from './ListItemComponent';
 
 interface ListItemComponent {
@@ -13,8 +13,7 @@ export const ListItems: React.FC<ListItemsProps> = ({items}) => {
   const theme = useTheme();
   return (
     <List
-      component={Card}
-      elevation={3}
+      component={Paper}
       sx={{
         borderRadius: '10px',
         marginY: theme.spacing(2),
