@@ -1,5 +1,5 @@
-import { Avatar, Grid, Typography, Box } from '@mui/material';
-import {ListItems} from '@whatsapp/whatsapp-ui';
+import {Avatar, Grid, Typography, Box} from '@mui/material';
+import {ActionableCard, ListItems} from '@whatsapp/whatsapp-ui';
 import CropOriginalIcon from '@mui/icons-material/CropOriginal';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
@@ -9,22 +9,58 @@ import HistoryToggleOffIcon from '@mui/icons-material/HistoryToggleOff';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import ChatIcon from '@mui/icons-material/Chat';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SearchIcon from '@mui/icons-material/Search';
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import IosShareIcon from '@mui/icons-material/IosShare';
 
 export const ConversationProfile = () => {
   return (
     <Box p={2}>
-      <Grid container justifyContent={'center'} alignItems={'center'} direction={'column'}>
-        <Box mb={2}>
-          <Typography>contact info</Typography>
-        </Box>
-        <Avatar sx={{width: 150, height: 150}} alt='Remy Sharp' />
+      <Box mb={2}>
+        <Typography
+          variant='h6'
+          sx={{
+            fontWeight: 'bold',
+            textAlign: 'center',
+          }}>
+          Contact Info
+        </Typography>
+      </Box>
+      <Grid container justifyContent={'center'} alignItems={'center'} direction={'column'} spacing={0.5}>
         <Grid item>
-          <Typography variant='h5' component='b'>
+          <Avatar sx={{width: 150, height: 150}} alt='Remy Sharp' />
+        </Grid>
+        <Grid item>
+          <Typography
+            variant='h5'
+            sx={{
+              fontWeight: 'bold',
+            }}>
             Jay
           </Typography>
         </Grid>
         <Grid item>
           <Typography component='p'>{'+91 9898989898'}</Typography>
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        justifyContent={'space-between'}
+        spacing={2}
+        sx={{
+          mt: 2,
+        }}>
+        <Grid item xs>
+          <ActionableCard Icon={CropOriginalIcon} text={'Audio'} />
+        </Grid>
+        <Grid item xs>
+          <ActionableCard Icon={IosShareIcon} text={'Share'} />
+        </Grid>
+        <Grid item xs>
+          <ActionableCard Icon={CurrencyRupeeIcon} text={'Pay'} />
+        </Grid>
+        <Grid item xs>
+          <ActionableCard Icon={SearchIcon} text={'Search'} />
         </Grid>
       </Grid>
       <ListItems
@@ -33,7 +69,6 @@ export const ConversationProfile = () => {
           {name: 'Starred Messages', Icon: StarBorderIcon},
         ]}
       />
-
       <ListItems
         items={[
           {name: 'Notifications', Icon: NotificationsNoneIcon},

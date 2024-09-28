@@ -95,6 +95,11 @@ function App() {
           color: 'textPrimary',
         },
       },
+      MuiPaper: {
+        defaultProps: {
+          elevation: 3,
+        },
+      },
     },
   });
   return (
