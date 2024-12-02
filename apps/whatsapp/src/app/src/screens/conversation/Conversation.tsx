@@ -15,7 +15,7 @@ import TopChatBar from './TopChatBar';
 import EmojiPicker, { EmojiClickData } from 'emoji-picker-react';
 import useLongPress from '../../hooks/useLongPress';
 import dayjs from 'dayjs';
-type Props = {};
+type Props = object;
 
 const currentUserId = '10';
 
@@ -166,11 +166,9 @@ const testMessages: Message[] = [
   },
 ];
 
-const ChatItem = (props: { message: Message }) => {
-  const { message } = props;
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
-    null
-  );
+const ChatItem = (props: {message: Message}) => {
+  const {message} = props;
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const [reactions, setReactions] = React.useState(message.reactions || []);
   const onLongPress = (currentTarget: any) => {
     setAnchorEl(currentTarget);
@@ -238,8 +236,7 @@ const ChatItem = (props: { message: Message }) => {
         id={id}
         open={open}
         anchorEl={anchorEl}
-        onClose={handleClose}
-      >
+        onClose={handleClose}>
         <EmojiPicker
           style={{
             marginBottom: 5,
@@ -256,8 +253,7 @@ const ChatItem = (props: { message: Message }) => {
           mt: 1,
           mb: reactions.length ? 1 : 0,
         }}
-        aria-describedby={id}
-      >
+        aria-describedby={id}>
         <Badge
           anchorOrigin={{
             vertical: 'bottom',
@@ -276,8 +272,7 @@ const ChatItem = (props: { message: Message }) => {
               right: 20,
             },
           }}
-          badgeContent={reaction || 0}
-        >
+          badgeContent={reaction || 0}>
           <Box
             p={1}
             sx={{
@@ -300,13 +295,10 @@ const ChatItem = (props: { message: Message }) => {
                   },
                 ];
               });
-            }}
-          >
+            }}>
             <Typography>{message.message}</Typography>
-            <Stack direction="row" justifyContent="flex-end">
-              <Typography variant="caption">
-                {dayjs(message.time).format('hh:mm A')}
-              </Typography>
+            <Stack direction='row' justifyContent='flex-end'>
+              <Typography variant='caption'>{dayjs(message.time).format('hh:mm A')}</Typography>
             </Stack>
           </Box>
         </Badge>
@@ -320,10 +312,10 @@ const Conversation = (props: Props) => {
   const bottomRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    bottomRef.current?.scrollIntoView({behavior: 'smooth'});
   }, [messages]);
 
-  const onSendMesssage = (message: string) => {
+  const onSendMessage = (message: string) => {
     setMessages((prev) => [
       ...prev,
       {
@@ -345,7 +337,7 @@ const Conversation = (props: Props) => {
         </Grid>
       </Box>
       <Box ref={bottomRef} />
-      <BottomChatBar onSendMesssage={onSendMesssage} />
+      <BottomChatBar onSendMessage={onSendMessage} />
     </>
   );
 };
