@@ -20,10 +20,10 @@ import ClickOutsideComponent from '../../components/ClickOutsideComponent';
 import SendIcon from '@mui/icons-material/Send';
 
 type Props = {
-  onSendMesssage: (message: string) => void;
+  onSendMessage: (message: string) => void;
 };
 
-const BottomChatBar = ({ onSendMesssage }: Props) => {
+const BottomChatBar = ({onSendMessage}: Props) => {
   const [openEmojiPicker, setOpenEmojiPicker] = React.useState(false);
 
   const [message, setMessage] = React.useState('');
@@ -42,6 +42,20 @@ const BottomChatBar = ({ onSendMesssage }: Props) => {
 
   const theme = useTheme();
 
+  const handleSendMessage = useCallback(() => {
+    onSendMessage(message);
+    setMessage('');
+  }, [message, onSendMessage]);
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === 'Enter') {
+        handleSendMessage();
+      }
+    },
+    [handleSendMessage],
+  );
+
   return (
     <div
       style={{
@@ -50,36 +64,28 @@ const BottomChatBar = ({ onSendMesssage }: Props) => {
         top: 'auto',
         left: 0,
         right: 0,
-      }}
-    >
+      }}>
       <Container
         sx={{
           padding: '0px !important',
-        }}
-      >
+        }}>
         <AppBar
-          position="static"
+          position='static'
           sx={{
             paddingBottom: 2,
             paddingTop: 1,
-          }}
-        >
+          }}>
           <Toolbar disableGutters>
             <IconButton>
               <AddIcon />
             </IconButton>
-            <Box sx={{ flexGrow: 1, display: { md: 'flex' } }}>
+            <Box sx={{flexGrow: 1, display: {md: 'flex'}}}>
               <TextField
-                sx={{ mr: 3 }}
-                size="small"
+                sx={{mr: 3}}
+                size='small'
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    onSendMesssage(message);
-                    setMessage('');
-                  }
-                }}
+                onKeyDown={handleKeyDown}
                 InputProps={{
                   fullWidth: true,
                   endAdornment: (
@@ -88,7 +94,7 @@ const BottomChatBar = ({ onSendMesssage }: Props) => {
                         <InsertEmoticonIcon />
                       </IconButton>
                       {message.length > 0 && (
-                        <IconButton>
+                        <IconButton onClick={handleSendMessage}>
                           <SendIcon />
                         </IconButton>
                       )}
@@ -108,17 +114,17 @@ const BottomChatBar = ({ onSendMesssage }: Props) => {
               />
             </Box>
             <Stack direction={'row'}>
-              <Tooltip title="Send money">
+              <Tooltip title='Send money'>
                 <IconButton>
                   <CurrencyRupeeIcon />
                 </IconButton>
               </Tooltip>
-              <Tooltip title="Open camera">
+              <Tooltip title='Open camera'>
                 <IconButton>
                   <CameraAltOutlinedIcon />
                 </IconButton>
               </Tooltip>
-              <Tooltip title="Record voice">
+              <Tooltip title='Record voice'>
                 <IconButton>
                   <MicNoneOutlinedIcon />
                 </IconButton>
