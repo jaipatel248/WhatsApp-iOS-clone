@@ -1,11 +1,11 @@
-import React from "react";
-import { Avatar, AvatarProps } from "@mui/material";
+import React, {useMemo} from 'react';
+import {Avatar, AvatarProps} from '@mui/material';
 
 type Props = AvatarProps;
 
 const getRandomColor = (): string => {
-  let hex = Math.floor(Math.random() * 0xffffff);
-  let color = "#" + hex.toString(16);
+  const hex = Math.floor(Math.random() * 0xffffff);
+  const color = '#' + hex.toString(16);
   return color;
 };
 
@@ -13,10 +13,9 @@ const CustomAvatar = (props: Props) => {
   return (
     <Avatar
       style={{
-        backgroundColor: getRandomColor(),
-      }}
-    >
-      JP
+        backgroundColor: useMemo(() => getRandomColor(), []),
+      }}>
+      {props.children || 'JP'}
     </Avatar>
   );
 };
