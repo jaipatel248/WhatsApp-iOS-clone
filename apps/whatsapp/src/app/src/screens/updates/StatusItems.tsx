@@ -37,6 +37,7 @@ const StatusItems = (props: Props) => {
         <Stories
           storyStyles={{
             width: '100vw',
+            objectFit: 'scale-down',
           }}
           onAllStoriesEnd={() => setShowStory(false)}
           stories={[
