@@ -15,9 +15,9 @@ import AddIcon from '@mui/icons-material/Add';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import MicNoneOutlinedIcon from '@mui/icons-material/MicNoneOutlined';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-import EmojiPicker, { EmojiClickData, Theme } from 'emoji-picker-react';
-import ClickOutsideComponent from '../../components/ClickOutsideComponent';
+import EmojiPicker, {EmojiClickData, Theme} from 'emoji-picker-react';
 import SendIcon from '@mui/icons-material/Send';
+import {ClickOutsideComponent} from '@whatsapp/whatsapp-ui';
 
 type Props = {
   onSendMessage: (message: string) => void;

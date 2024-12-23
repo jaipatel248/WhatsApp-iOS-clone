@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Box, List, Paper, useTheme, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import StatusItem from "./StatusItem";
-import { getChatList } from "../../api/ChatAPI";
-import { IChatObject } from "../../api/TypeScriptObjs";
-import { useLoading } from "../../LoadingContext/LoadingContext";
-type Props = {};
+import {Box, List, Paper, useTheme, Typography} from '@mui/material';
+import {useEffect, useState} from 'react';
+import StatusItem from './StatusItem';
+import {getChatList} from '../../api/ChatAPI';
+import {IChatObject} from '../../api/TypeScriptObjs';
+import {useLoading} from '../../LoadingContext/LoadingContext';
+type Props = unknown;
 
 const StatusItems = (props: Props) => {
   const theme = useTheme();
-  const { showLoading, hideLoading } = useLoading();
+  const {showLoading, hideLoading} = useLoading();
 
   const [items, setItems] = useState<IChatObject[]>([]);
   useEffect(() => {
@@ -28,12 +28,11 @@ const StatusItems = (props: Props) => {
       </Box>
       <List
         component={Paper}
-        variant="outlined"
+        variant='outlined'
         square
         sx={{
           paddingY: 0,
-        }}
-      >
+        }}>
         {items.map((item) => (
           <StatusItem key={item.id} item={item} />
         ))}

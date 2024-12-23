@@ -1,45 +1,27 @@
-import {
-  Divider,
-  ListItemButton,
-  ListItemAvatar,
-  ListItemText,
-  Grid,
-  Paper,
-} from "@mui/material";
-import React from "react";
-import CustomAvatar from "../../components/avatar/CustomAvatar";
-import { IChatObject } from "../../api/TypeScriptObjs";
-import { useNavigate } from "react-router-dom";
+import {Divider, ListItemButton, ListItemAvatar, ListItemText, Grid} from '@mui/material';
+import React from 'react';
+import {IChatObject} from '../../api/TypeScriptObjs';
+import {CustomAvatar} from '@whatsapp/whatsapp-ui';
 
 type Props = {
   item: IChatObject;
 };
 
-const StatusItem = ({ item }: Props) => {
-  const { id, name, last_chat_date } = item;
-  const navigate = useNavigate();
-  const onClick = () => {};
+const StatusItem = ({item}: Props) => {
+  const {name, last_chat_date} = item;
   return (
     <>
-      <ListItemButton alignItems="flex-start" onClick={onClick}>
+      <ListItemButton alignItems='flex-start'>
         <ListItemAvatar>
           <CustomAvatar />
         </ListItemAvatar>
-        <Grid
-          container
-          direction={"row"}
-          wrap="nowrap"
-          justifyContent={"space-between"}
-        >
+        <Grid container direction={'row'} wrap='nowrap' justifyContent={'space-between'}>
           <Grid item xs={8}>
-            <ListItemText
-              primary={name}
-              secondary={<React.Fragment>{last_chat_date}</React.Fragment>}
-            />
+            <ListItemText primary={name} secondary={last_chat_date} />
           </Grid>
         </Grid>
       </ListItemButton>
-      <Divider variant="inset" component="li" />
+      <Divider variant='inset' component='li' />
     </>
   );
 };

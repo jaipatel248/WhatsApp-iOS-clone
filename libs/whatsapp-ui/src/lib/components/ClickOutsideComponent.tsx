@@ -1,15 +1,12 @@
-import React, { useEffect, useRef } from "react";
-import { Box, Button } from "@mui/material";
+import React, {useEffect, useRef} from 'react';
+import {Box} from '@mui/material';
 
 interface ClickOutsideComponentProps {
   onOutsideClick: () => void;
   children: React.ReactNode;
 }
 
-const ClickOutsideComponent: React.FC<ClickOutsideComponentProps> = ({
-  onOutsideClick,
-  children,
-}) => {
+export const ClickOutsideComponent: React.FC<ClickOutsideComponentProps> = ({onOutsideClick, children}) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -19,13 +16,12 @@ const ClickOutsideComponent: React.FC<ClickOutsideComponentProps> = ({
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [onOutsideClick]);
 
   return <Box ref={ref}>{children}</Box>;
 };
-export default ClickOutsideComponent;

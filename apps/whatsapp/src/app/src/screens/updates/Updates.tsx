@@ -1,11 +1,9 @@
 import { Box } from "@mui/material";
-import React from "react";
-import TopBar from "../../components/topBar/TopBar";
-import SearchBar from "../../components/searchBar/SearchBar";
-import StatusItems from "./StatusItems";
-import MyStatus from "./MyStatus";
+import {SearchBar, TopBar} from '@whatsapp/whatsapp-ui';
+import StatusItems from './StatusItems';
+import MyStatus from './MyStatus';
 
-type Props = {};
+type Props = unknown;
 
 const Updates = (props: Props) => {
   return (
