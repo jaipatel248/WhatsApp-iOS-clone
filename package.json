@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "predeploy": "nx build whatsapp",
+    "predeploy": "nx build whatsapp && shx cp -r dist/apps/WhatsApp-iOS-clone/index.html dist/apps/WhatsApp-iOS-clone/404.html",
     "deploy": "gh-pages -d dist/apps/WhatsApp-iOS-clone"
   },
   "private": true,
@@ -64,6 +64,7 @@
     "jsdom": "~22.1.0",
     "nx": "19.7.3",
     "prettier": "^2.6.2",
+    "shx": "^0.3.4",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "typescript": "~5.5.2",
