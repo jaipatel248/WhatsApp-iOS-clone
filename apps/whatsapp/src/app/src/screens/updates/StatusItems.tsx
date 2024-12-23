@@ -96,11 +96,9 @@ const StatusItems = (props: Props) => {
       <List
         component={Paper}
         variant='outlined'
-        variant='outlined'
         square
         sx={{
           paddingY: 0,
-        }}>
         }}>
         {items.map((item) => (
           <StatusItem key={item.id} item={item} onClickStatus={handleClickStatus} />
