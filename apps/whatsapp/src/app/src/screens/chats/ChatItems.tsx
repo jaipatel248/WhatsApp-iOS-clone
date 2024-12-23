@@ -5,12 +5,11 @@ import ChatItem from "./ChatItem";
 import { getChatList } from "../../api/ChatAPI";
 import { IChatObject } from "../../api/TypeScriptObjs";
 import { useLoading } from "../../LoadingContext/LoadingContext";
-import SearchBar from "../../components/searchBar/SearchBar";
-import TopBar from "../../components/topBar/TopBar";
-import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
-import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
-import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
-type Props = {};
+import {SearchBar, TopBar} from '@whatsapp/whatsapp-ui';
+import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
+import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
+type Props = unknown;
 
 const ChatItems = (props: Props) => {
   const { showLoading, hideLoading } = useLoading();

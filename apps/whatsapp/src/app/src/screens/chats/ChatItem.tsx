@@ -8,10 +8,10 @@ import {
   Stack,
   useTheme,
 } from "@mui/material";
-import React from "react";
-import CustomAvatar from "../../components/avatar/CustomAvatar";
+import React from 'react';
 import { IChatObject } from "../../api/TypeScriptObjs";
 import { useNavigate } from "react-router-dom";
+import {CustomAvatar} from '@whatsapp/whatsapp-ui';
 
 type Props = {
   item: IChatObject;

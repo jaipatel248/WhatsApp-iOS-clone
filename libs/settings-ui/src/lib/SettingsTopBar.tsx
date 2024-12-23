@@ -1,4 +1,5 @@
 import {SearchBar, TopBar} from '@whatsapp/whatsapp-ui';
+
 type Props = unknown;
 
 const SettingsTopBar = (props: Props) => {
