@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url=https://yourdomain.com/#/desired-route">
+    <script>
+        // Redirect for single-page applications
+        var redirect = window.location.href.replace('https://yourusername.github.io/', 'https://yourdomain.com/#/');
+        window.location.replace(redirect);
+    </script>
+    <title>Redirecting...</title>
+</head>
+
+<body>
+    <p>If you are not redirected automatically, follow this <a id="redirect-link"
+            href="https://yourdomain.com/#/">link</a>.</p>
+    <script>
+        document.getElementById('redirect-link').href = redirect;
+    </script>
+</body>
+
+</html>
